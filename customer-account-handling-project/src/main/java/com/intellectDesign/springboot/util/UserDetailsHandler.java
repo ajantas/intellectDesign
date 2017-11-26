@@ -25,7 +25,7 @@ public class UserDetailsHandler {
 			return user.getId();
 		}
 		else{
-			return "emailid already registered";
+			return null;
 		}
 		
 	}

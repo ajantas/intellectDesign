@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -28,7 +29,11 @@ public class UserUnitTest {
 	@Before
 	public void setUp() throws Exception {
 		 user = new User();
-		 
+		 user.setEmail("john.Smith@gmail.com");
+		 user.setfName("john");
+		 user.setlName("smith");
+		 user.setId("df4567");
+		 user.setPinCode(713325);
 	}
 	
 	
@@ -36,16 +41,16 @@ public class UserUnitTest {
 	public void testQuickNegative() throws Exception {
 		Date birthDate = new Date("02-MAR-2080");
 		user.setBirthDate(birthDate);
-		 String st = service.createUser(user);
-		assertEquals("234", st);
+		 ResponseEntity st = service.createUser(user);
+		assertEquals(400, st.getStatusCodeValue());
 	}
 	
 	@Test
 	public void testQuickPositive() throws Exception {
 		Date birthDate = new Date("02-MAR-2011");
 		user.setBirthDate(birthDate);
-		 String st = service.createUser(user);
-		assertEquals("123", st);
+		 ResponseEntity st = service.createUser(user);
+		 assertEquals(200, st.getStatusCodeValue());
 	}
 	
 }

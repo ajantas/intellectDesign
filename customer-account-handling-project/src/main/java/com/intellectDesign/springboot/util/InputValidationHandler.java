@@ -11,12 +11,26 @@ import com.intellectDesign.springboot.model.User;
 public class InputValidationHandler {
 
 	
-	public boolean validationOfNewUserdetails(User user){
-		boolean status = true;
+	public int validationOfNewUserdetails(User user){
+		int status = 0;
 		 Date date = new Date();
-		 if(user!=null && (user.getBirthDate()==null || user.getBirthDate()!=null && user.getBirthDate().after(date)) || (user.getEmail()==null || (user.getEmail()!=null && user.getEmail().isEmpty())) || (user.getfName()==null || (user.getfName()!=null && user.getfName().isEmpty())) || (user.getlName()==null ||(user.getlName()!=null&&user.getlName().isEmpty())) || user.getPinCode()<=0){
-			status = false;
+		 if(user!=null && (user.getBirthDate()==null || user.getBirthDate()!=null && user.getBirthDate().after(date))){
+			 status = 1;
+		 }
+		if(user!=null &&(user.getEmail()==null || (user.getEmail()!=null && user.getEmail().isEmpty()))){
+			status =2;
 		}
+			
+		if (user!=null && (user.getfName()==null || (user.getfName()!=null && user.getfName().isEmpty()))){
+			status =3;
+		}
+		if(user!=null && (user.getlName()==null ||(user.getlName()!=null&&user.getlName().isEmpty()))){
+			status = 4;
+		}
+	if(user!=null && user.getPinCode()<=0){
+		status = 5;
+	}
+		
 		return status;
 	}
 	public boolean validatDuplicateUser(User user,List<User> useres){
