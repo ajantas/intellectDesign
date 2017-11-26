@@ -18,7 +18,7 @@ import com.intellectDesign.springboot.util.InputValidationHandler;
 import com.intellectDesign.springboot.util.UserDetailsHandler;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/intellectDesign/v3/user")
 public class RestService {
 
 	@Autowired
